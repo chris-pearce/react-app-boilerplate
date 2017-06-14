@@ -1,0 +1,33 @@
+:root {
+    /* Typography */
+    --typography-font-size: 1.2em;
+    --typography-font-weight-bold: 700;
+
+    /* Colours */
+    --colour-text: #333;
+    --colour-primary: #0366d6;
+
+    /* Spacing */
+    --spacing-base: var(--typography-font-size);
+    --spacing-small: calc(var(--spacing-base) / 2);
+
+    /* Dimensions */
+
+
+    /* Shared */
+
+
+    /* Animations */
+
+
+    /* https://github.com/JLHwung/postcss-font-family-system-ui */
+    --customiser-fonts-system-font: -apple-system,
+                                    BlinkMacSystemFont,
+                                    'Segoe UI',
+                                    Roboto,
+                                    Oxygen-Sans,
+                                    Ubuntu,
+                                    Cantarell,
+                                    'Helvetica Neue',
+                                    sans-serif
+}

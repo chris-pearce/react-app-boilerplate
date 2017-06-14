@@ -6,11 +6,12 @@
  * https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31
  * https://blog.madewithenvy.com/getting-started-with-webpack-2-ed2b86c68783
  * https://github.com/GoogleChrome/preload-webpack-plugin/blob/master/demo/webpack.config.js
+ * https://blog.madewithenvy.com/webpack-2-postcss-cssnext-fdcd2fd7d0bd
  */
 
 const webpack = require('webpack');
 const path = require('path');
-const {resolve} = require('path');
+const {resolve} = path;
 const chalk = require('chalk');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -145,19 +146,13 @@ module.exports = env => {
                                     {
                                         loader: 'css-loader',
                                         options: {
-                                            minimize: isProd,
+                                            // We want PostCSS to get `@import` statements first
+                                            // https://goo.gl/77xDMc
+                                            importLoaders: 1,
+                                            //minimize: isProd,
                                         }
                                     },
-                                    {
-                                        loader: 'postcss-loader',
-                                        options: {
-                                            plugins: () => {
-                                                return [
-                                                    require('autoprefixer')
-                                                ];
-                                            }
-                                        },
-                                    },
+                                    'postcss-loader',
                                 ]
                             },
                         )
@@ -169,6 +164,17 @@ module.exports = env => {
                     test: /\.(gif|png|jpg|jpeg\ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                     use: 'file-loader',
                 },
+
+                // Favicon
+                // {
+                //     test: /favicon\.ico/i,
+                //     use: [{
+                //         loader: 'file-loader',
+                //         options: {
+                //             name: 'favicon.ico',
+                //         }
+                //     }],
+                // },
             ]
         },
 

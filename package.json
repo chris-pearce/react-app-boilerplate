@@ -2,7 +2,6 @@
   "name": "app-name-here",
   "version": "0.0.0",
   "description": "app description here",
-  "main": "index.html",
   "config": {
     "dist": "./dist",
     "src": "./src"
@@ -12,9 +11,8 @@
     "watch:bundle": "webpack-dev-server --env.dev --hot --watch --progress",
     "clean": "rimraf $npm_package_config_dist",
     "gzip": "npm run clean && npm run build:bundle && gzip $npm_package_config_dist/**",
-    "lint": "esw $npm_package_config_src --color",
-    "lint:watch": "npm run lint -- --watch",
-    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint --color $npm_package_config_src/**/*.js",
+    "lint:fix": "npm run lint --fix",
     "start": "npm run clean & run-p -n watch:*",
     "build": "npm run clean & run-p -n build:*"
   },
@@ -33,6 +31,8 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -51,12 +51,13 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "eslint-watch": "^3.1.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.28.0",
     "inline-chunk-manifest-html-webpack-plugin": "^1.1.1",
     "name-all-modules-plugin": "^1.0.1",
     "npm-run-all": "^4.0.2",
+    "postcss-csso": "^2.0.0",
+    "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.5",
     "postcss-reporter": "^3.0.0",
     "rimraf": "^2.6.1",
